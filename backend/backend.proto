@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package movie;
+
+message HealthCheckRequest {}
+
+message HealthCheckResponse {
+    string message = 1;
+}
+
+service HealthCheck {
+    rpc Health (HealthCheckRequest) returns (HealthCheckResponse);
+}
+
+message MovieGetIndex {
