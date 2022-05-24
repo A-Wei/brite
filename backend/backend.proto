@@ -12,4 +12,30 @@ service HealthCheck {
     rpc Health (HealthCheckRequest) returns (HealthCheckResponse);
 }
 
-message MovieGetIndex {
+message MovieIndexRequest {
+    int32 limit = 1;
+    int32 page = 2;
+}
+
+message MovieResponse {
+    string imdb_id = 1;
+    string year = 2;
+    string type = 3;
+    string title = 4;
+    string poster = 5;
+}
+
+message MovieIndexResponse {
+    repeated MovieResponse results = 1;
+}
+
+message RemoveMovieResponse {
+    bool removed = 1;
+}
+
+service MovieService {
+    rpc IndexCall (MovieIndexRequest) return (MovieIndexResponse);
+    rpc MovieCall (MovieRequest) return (MovieResponse);
+    rpc AddCall (AddMovieRequest) return (MovieResponse);
+    rpc RemoveCall (RemoveRequest) return (RemoveMovieResponse);
+}
