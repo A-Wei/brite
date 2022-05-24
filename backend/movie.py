@@ -102,12 +102,6 @@ class Movie(ndb.Model):
         return query.fetch()
 
     @classmethod
-    def post(cls, title):
-        movie = cls.search_in_omdbapi(title)
-
-        return movie
-
-    @classmethod
     def search_in_omdbapi(cls, title):
 
         resp = httpx.get(f"http://www.omdbapi.com/?apikey={API_KEY}&t={title}")
